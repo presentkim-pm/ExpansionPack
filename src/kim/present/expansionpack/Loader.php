@@ -215,9 +215,6 @@ final class Loader extends PluginBase{
     }
 
     private function registerBlock(Block $block) : void{
-        static $count = 0;
-        var_dump(++$count);
-
         $idInfo = $block->getIdInfo();
         $itemId = $idInfo->getItemId();
         if(255 - $idInfo->getBlockId() !== $idInfo->getItemId()){
