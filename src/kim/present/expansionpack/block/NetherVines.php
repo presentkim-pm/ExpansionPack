@@ -1,9 +1,37 @@
 <?php
 
+/**
+ *  ____                           _   _  ___
+ * |  _ \ _ __ ___  ___  ___ _ __ | |_| |/ (_)_ __ ___
+ * | |_) | '__/ _ \/ __|/ _ \ '_ \| __| ' /| | '_ ` _ \
+ * |  __/| | |  __/\__ \  __/ | | | |_| . \| | | | | | |
+ * |_|   |_|  \___||___/\___|_| |_|\__|_|\_\_|_| |_| |_|
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Lesser General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * @author  PresentKim (debe3721@gmail.com)
+ * @link    https://github.com/PresentKim
+ * @license https://www.gnu.org/licenses/lgpl-3.0 LGPL-3.0 License
+ *
+ *   (\ /)
+ *  ( . .) ♥
+ *  c(")(")
+ *
+ * @noinspection PhpIllegalPsrClassPathInspection
+ * @noinspection PhpDocSignatureInspection
+ * @noinspection SpellCheckingInspection
+ * @noinspection PhpUnusedParameterInspection
+ */
+
 declare(strict_types=1);
 
 namespace kim\present\expansionpack\block;
 
+use InvalidArgumentException;
+use kim\present\expansionpack\utils\NetherTreeType;
 use pocketmine\block\Block;
 use pocketmine\block\BlockBreakInfo;
 use pocketmine\block\Flowable;
@@ -16,7 +44,8 @@ use pocketmine\math\Vector3;
 use pocketmine\player\Player;
 use pocketmine\utils\AssumptionFailedError;
 use pocketmine\world\BlockTransaction;
-use kim\present\expansionpack\utils\NetherTreeType;
+
+use function mt_rand;
 
 class NetherVines extends Flowable{
     private NetherTreeType $treeType;
@@ -47,7 +76,7 @@ class NetherVines extends Flowable{
         $this->age = BlockDataSerializer::readBoundedInt("age", $stateMeta, 0, 25);
     }
 
-    //NOTICE: 원래 0b11001(25)지만, PM이  0b1111(15)까지만 지원
+    /** NOTICE: Originally 0b11001 (25), but only supports PM up to 0b1111 (15) */
     public function getStateBitmask() : int{
         return 0b1111;
     }
@@ -57,7 +86,7 @@ class NetherVines extends Flowable{
     /** @return $this */
     public function setAge(int $age) : self{
         if($age < 0 || $age > 15){
-            throw new \InvalidArgumentException("Age must be in range 0-15");
+            throw new InvalidArgumentException("Age must be in range 0-15");
         }
         $this->age = $age;
         return $this;
