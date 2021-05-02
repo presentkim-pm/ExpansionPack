@@ -91,7 +91,7 @@ final class Loader extends PluginBase{
     private function registerAllBlocks() : void{
         //Stripped logs
         foreach(TreeType::getAll() as $treeType){
-            $this->registerBlock(new PillarWood(ExpansionPackLegacyIdHelper::getStripedLogIdentifier($treeType), "Stripeped {$treeType->getDisplayName()} Log", $treeType));
+            $this->registerBlock(new PillarWood(ExpansionPackLegacyIdHelper::getStripedLogIdentifier($treeType), "Stripeped {$treeType->getDisplayName()} Log", $treeType, true));
         }
 
         //Nether plants
