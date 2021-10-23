@@ -1,7 +1,7 @@
 ---
 name: ExpansionPack
 main: kim\present\expansionpack\Loader
-version: 0.1.0
+version: 0.1.1
 api: [ 4.0.0 ]
 author: PresentKim
 description: Implement unimplemented blocks and items.
