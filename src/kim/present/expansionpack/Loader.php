@@ -91,7 +91,7 @@ final class Loader extends PluginBase{
     private function registerAllBlocks() : void{
         //Stripped logs
         foreach(TreeType::getAll() as $treeType){
-            $this->registerBlock(new PillarWood(ExpansionPackLegacyIdHelper::getStripedLogIdentifier($treeType), "Stripeped {$treeType->getDisplayName()} Log", $treeType));
+            $this->registerBlock(new PillarWood(ExpansionPackLegacyIdHelper::getStripedLogIdentifier($treeType), "Stripeped {$treeType->getDisplayName()} Log", BreakInfo::instant(), $treeType, true));
         }
 
         //Nether plants
@@ -105,7 +105,7 @@ final class Loader extends PluginBase{
             $this->registerBlock(new Pillar($treeType->getStripepedHyphaeIdentifier(), "Stripeped {$name} Hyphae", $netherWoodBreakInfo));
             $this->registerBlock(new Planks($treeType->getPlanksIdentifier(), $name . " Planks", $netherWoodBreakInfo));
             $this->registerBlock(new Slab($treeType->getSlabIdentifier(), $name . " Slab", $netherWoodBreakInfo));
-            $this->registerBlock(new WoodenStairs($treeType->getStairsIdentifier(), $name . " Stairs"));
+            $this->registerBlock(new WoodenStairs($treeType->getStairsIdentifier(), $name . " Stairs", BreakInfo::instant()));
             $this->registerBlock(new WoodenButton($treeType->getButtonIdentifier(), $name . " Button", $netherWoodBreakInfo));
             $this->registerBlock(new WoodenDoor($treeType->getDoorIdentifier(), $name . " Door", $netherWoodBreakInfo));
             $this->registerBlock(new WoodenTrapdoor($treeType->getTrapdoorIdentifier(), $name . " Trapdoor", $netherWoodBreakInfo));
@@ -207,8 +207,8 @@ final class Loader extends PluginBase{
         $this->registerBlock(new HorizontalTransparent(new BID(BlockIds::STICKYPISTONARMCOLLISION, 0, ItemIds::STICKYPISTONARMCOLLISION), "Sticky Piston Arm Collision", BreakInfo::instant()));
 
         $this->registerBlock(new Lantern(new BID(BlockIds::SOUL_LANTERN, 0, ItemIds::SOUL_LANTERN), "Soul Lantern", new BreakInfo(3.5, ToolType::PICKAXE, ToolTier::WOOD()->getHarvestLevel())));
-        $this->registerBlock(new Fire(new BID(BlockIds::SOUL_FIRE, 0, ItemIds::SOUL_FIRE), "Soul Fire"));
-        $this->registerBlock(new Torch(new BID(BlockIds::SOUL_TORCH, 0, ItemIds::SOUL_TORCH), "Soul Touch"));
+        $this->registerBlock(new Fire(new BID(BlockIds::SOUL_FIRE, 0, ItemIds::SOUL_FIRE), "Soul Fire", BreakInfo::instant()));
+        $this->registerBlock(new Torch(new BID(BlockIds::SOUL_TORCH, 0, ItemIds::SOUL_TORCH), "Soul Touch", BreakInfo::instant()));
         $this->registerBlock(new SweetBerryBush(new BID(BlockIds::SWEET_BERRY_BUSH, 0, ItemIds::SWEET_BERRIES), "Sweet Berries", BreakInfo::instant()));
         $this->registerBlock(new Chain(new BID(BlockIds::CHAIN, 0, ItemIds::CHAIN), "Chain", new BreakInfo(5, ToolType::PICKAXE, ToolTier::WOOD()->getHarvestLevel())));
         $this->registerBlock(new LightBlock(new BID(BlockIds::LIGHT_BLOCK, 0, ItemIds::LIGHT_BLOCK), "Light Block", BreakInfo::indestructible()));

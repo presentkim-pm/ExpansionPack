@@ -130,9 +130,9 @@ final class NetherTreeType{
     public function getSlabIdentifier() : BlockIdentifierFlattened{
         switch($this->id()){
             case self::CRIMSON()->id():
-                return new BlockIdentifierFlattened(Ids::CRIMSON_SLAB, Ids::CRIMSON_DOUBLE_SLAB, 0, ItemIds::CRIMSON_SLAB);
+                return new BlockIdentifierFlattened(Ids::CRIMSON_SLAB, [Ids::CRIMSON_DOUBLE_SLAB], 0, ItemIds::CRIMSON_SLAB);
             case self::WARPED()->id():
-                return new BlockIdentifierFlattened(Ids::WARPED_SLAB, Ids::WARPED_DOUBLE_SLAB, 0, ItemIds::WARPED_SLAB);
+                return new BlockIdentifierFlattened(Ids::WARPED_SLAB, [Ids::WARPED_DOUBLE_SLAB], 0, ItemIds::WARPED_SLAB);
         }
         throw new AssumptionFailedError("Switch should cover all wood types");
     }

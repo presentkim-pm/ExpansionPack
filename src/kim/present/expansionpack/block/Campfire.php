@@ -80,7 +80,7 @@ class Campfire extends Transparent{
         if($face === Facing::UP){
             $block = clone $this;
             $block->setExtinguish(!$block->getExtinguish());
-            $this->pos->getWorld()->setBlock($this->pos, $block);
+            $this->position->getWorld()->setBlock($this->position, $block);
 
             return true;
         }

@@ -106,11 +106,11 @@ final class BlackStoneType{
     public function getSlabIdentifier() : ?BlockIdentifierFlattened{
         switch($this->id()){
             case self::BLACKSTONE()->id():
-                return new BlockIdentifierFlattened(Ids::BLACKSTONE_SLAB, Ids::BLACKSTONE_DOUBLE_SLAB, 0, ItemIds::BLACKSTONE_SLAB);
+                return new BlockIdentifierFlattened(Ids::BLACKSTONE_SLAB, [Ids::BLACKSTONE_DOUBLE_SLAB], 0, ItemIds::BLACKSTONE_SLAB);
             case self::POLISHED_BLACKSTONE()->id():
-                return new BlockIdentifierFlattened(Ids::POLISHED_BLACKSTONE_SLAB, Ids::POLISHED_BLACKSTONE_DOUBLE_SLAB, 0, ItemIds::POLISHED_BLACKSTONE_SLAB);
+                return new BlockIdentifierFlattened(Ids::POLISHED_BLACKSTONE_SLAB, [Ids::POLISHED_BLACKSTONE_DOUBLE_SLAB], 0, ItemIds::POLISHED_BLACKSTONE_SLAB);
             case self::POLISHED_BLACKSTONE_BRICKS()->id():
-                return new BlockIdentifierFlattened(Ids::POLISHED_BLACKSTONE_BRICK_SLAB, Ids::POLISHED_BLACKSTONE_BRICK_DOUBLE_SLAB, 0, ItemIds::POLISHED_BLACKSTONE_BRICK_SLAB);
+                return new BlockIdentifierFlattened(Ids::POLISHED_BLACKSTONE_BRICK_SLAB, [Ids::POLISHED_BLACKSTONE_BRICK_DOUBLE_SLAB], 0, ItemIds::POLISHED_BLACKSTONE_BRICK_SLAB);
         }
         return null;
     }

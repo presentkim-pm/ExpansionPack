@@ -24,7 +24,6 @@
  * @noinspection PhpDocSignatureInspection
  * @noinspection SpellCheckingInspection
  * @noinspection PhpUnusedParameterInspection
- * @noinspection PhpUnhandledExceptionInspection
  * @noinspection PhpInternalEntityUsedInspection
  */
 
@@ -36,7 +35,6 @@ use Exception;
 use pocketmine\data\bedrock\LegacyBlockIdToStringIdMap;
 use pocketmine\network\mcpe\convert\RuntimeBlockMapping;
 use pocketmine\scheduler\AsyncTask;
-use ReflectionClass;
 
 final class RuntimeIdsRegister extends AsyncTask{
     public function onRun() : void{
@@ -45,40 +43,33 @@ final class RuntimeIdsRegister extends AsyncTask{
 
     /** Register all block runtime ids from canonical_block_states.nbt */
     public static function register() : void{
-        $stringToLegacyMap = LegacyBlockIdToStringIdMap::getInstance()->getStringToLegacyMap();
-        $runtimeBlockMapping = RuntimeBlockMapping::getInstance();
+        (function(){ //HACK : Closure bind hack to access inaccessible members
+            $stringToLegacyMap = LegacyBlockIdToStringIdMap::getInstance()->getStringToLegacyMap();
+            $metaMap = [];
+            /** @see RuntimeBlockMapping::getBedrockKnownStates() */
+            foreach($this->getBedrockKnownStates() as $runtimeId => $state){
+                try{
+                    $name = $state->getString("name");
+                    if(!isset($stringToLegacyMap[$name]))
+                        continue;
 
-        $reflection = new ReflectionClass($runtimeBlockMapping);
-        $registerMappingMethod = $reflection->getMethod("registerMapping");
-        $registerMappingMethod->setAccessible(true);
-        $runtimeToLegacyMapProperty = $reflection->getProperty("runtimeToLegacyMap");
-        $runtimeToLegacyMapProperty->setAccessible(true);
+                    $legacyId = $stringToLegacyMap[$name];
+                    if(!isset($metaMap[$legacyId])){
+                        $metaMap[$legacyId] = 0;
+                    }
 
-        $runtimeToLegacyMap = $runtimeToLegacyMapProperty->getValue($runtimeBlockMapping);
-        $metaMap = [];
-        foreach($runtimeBlockMapping->getBedrockKnownStates() as $runtimeId => $state){
-            try{
-                $name = $state->getString("name");
-                if(!isset($stringToLegacyMap[$name]))
-                    continue;
+                    $meta = $metaMap[$legacyId]++;
+                    if($meta > 0xf)
+                        continue;
 
-                $legacyId = $stringToLegacyMap[$name];
-                if(!isset($metaMap[$legacyId])){
-                    $metaMap[$legacyId] = 0;
+                    /** @see RuntimeBlockMapping::$runtimeToLegacyMap */
+                    if(isset($this->runtimeToLegacyMap[$runtimeId]))
+                        continue;
+
+                    $this->registerMapping($runtimeId, $legacyId, $meta);
+                }catch(Exception){
                 }
-
-                $meta = $metaMap[$legacyId]++;
-                if($meta > 0xf)
-                    continue;
-
-                /** @see RuntimeBlockMapping::$runtimeToLegacyMap */
-                if(isset($runtimeToLegacyMap[$runtimeId]))
-                    continue;
-
-                /** @see RuntimeBlockMapping::registerMapping() */
-                $registerMappingMethod->invokeArgs($runtimeBlockMapping, [$runtimeId, $legacyId, $meta]);
-            }catch(Exception $e){
             }
-        }
+        })->call(RuntimeBlockMapping::getInstance());
     }
 }

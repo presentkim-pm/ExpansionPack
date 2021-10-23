@@ -112,7 +112,7 @@ class NetherVines extends Flowable{
             $ev = new BlockGrowEvent($this, $block);
             $ev->call();
             if(!$ev->isCancelled()){
-                $this->pos->getWorld()->setBlock($this->pos, $ev->getNewState());
+                $this->position->getWorld()->setBlock($this->position, $ev->getNewState());
             }
 
             $item->pop();
@@ -126,7 +126,7 @@ class NetherVines extends Flowable{
     public function onNearbyBlockChange() : void{
         $hangingBlock = $this->getSide($this->getHangingSide());
         if($hangingBlock->isTransparent() && !$hangingBlock instanceof NetherVines){
-            $this->pos->getWorld()->useBreakOn($this->pos);
+            $this->position->getWorld()->useBreakOn($this->position);
         }
     }
 
@@ -141,7 +141,7 @@ class NetherVines extends Flowable{
             $ev = new BlockGrowEvent($this, $block);
             $ev->call();
             if(!$ev->isCancelled()){
-                $this->pos->getWorld()->setBlock($this->pos, $ev->getNewState());
+                $this->position->getWorld()->setBlock($this->position, $ev->getNewState());
             }
         }
     }
