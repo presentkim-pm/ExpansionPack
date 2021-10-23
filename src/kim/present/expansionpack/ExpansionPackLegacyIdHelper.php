@@ -54,6 +54,6 @@ final class ExpansionPackLegacyIdHelper{
             case TreeType::DARK_OAK()->id():
                 return new BID(Ids::STRIPPED_DARK_OAK_LOG, 0, ItemIds::STRIPPED_DARK_OAK_LOG);
         }
-        throw new AssumptionFailedError("Switch should cover all wood types");
+        throw new AssumptionFailedError("Should cover all wood types");
     }
 }

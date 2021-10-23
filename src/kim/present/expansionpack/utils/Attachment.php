@@ -40,15 +40,12 @@ final class Attachment{
 
     /** @return int[] facing[] */
     public static function getHaningFaces(int $attachment, int $facing = Facing::NORTH) : array{
-        if($attachment === self::FLOOR){
-            return [Facing::DOWN];
-        }elseif($attachment === self::CEILING){
-            return [Facing::UP];
-        }elseif($attachment === self::SINGLE_WALL){
-            return [$facing];
-        }elseif($attachment === self::DOUBLE_WALL){
-            return [$facing, Facing::opposite($facing)];
-        }
-        return [];
+        return match ($attachment) {
+            self::FLOOR => [Facing::DOWN],
+            self::CEILING => [Facing::UP],
+            self::SINGLE_WALL => [$facing],
+            self::DOUBLE_WALL => [$facing, Facing::opposite($facing)],
+            default => []
+        };
     }
 }

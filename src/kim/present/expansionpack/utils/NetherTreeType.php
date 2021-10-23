@@ -68,200 +68,161 @@ final class NetherTreeType{
     }
 
     public function getStemIdentifier() : BID{
-        switch($this->id()){
-            case self::CRIMSON()->id():
-                return new BID(Ids::CRIMSON_STEM, 0, ItemIds::CRIMSON_STEM);
-            case self::WARPED()->id():
-                return new BID(Ids::WARPED_STEM, 0, ItemIds::WARPED_STEM);
-        }
-        throw new AssumptionFailedError("Switch should cover all wood types");
+        return match ($this->id()) {
+            self::CRIMSON()->id() => new BID(Ids::CRIMSON_STEM, 0, ItemIds::CRIMSON_STEM),
+            self::WARPED()->id() => new BID(Ids::WARPED_STEM, 0, ItemIds::WARPED_STEM),
+            default => throw new AssumptionFailedError("Should cover all wood types"),
+        };
     }
 
     public function getStripepedStemIdentifier() : BID{
-        switch($this->id()){
-            case self::CRIMSON()->id():
-                return new BID(Ids::STRIPPED_CRIMSON_STEM, 0, ItemIds::STRIPPED_CRIMSON_STEM);
-            case self::WARPED()->id():
-                return new BID(Ids::STRIPPED_WARPED_STEM, 0, ItemIds::STRIPPED_WARPED_STEM);
-        }
-        throw new AssumptionFailedError("Switch should cover all wood types");
+        return match ($this->id()) {
+            self::CRIMSON()->id() => new BID(Ids::STRIPPED_CRIMSON_STEM, 0, ItemIds::STRIPPED_CRIMSON_STEM),
+            self::WARPED()->id() => new BID(Ids::STRIPPED_WARPED_STEM, 0, ItemIds::STRIPPED_WARPED_STEM),
+            default => throw new AssumptionFailedError("Should cover all wood types"),
+        };
     }
 
     public function getHyphaeIdentifier() : BID{
-        switch($this->id()){
-            case self::CRIMSON()->id():
-                return new BID(Ids::CRIMSON_HYPHAE, 0, ItemIds::CRIMSON_HYPHAE);
-            case self::WARPED()->id():
-                return new BID(Ids::WARPED_HYPHAE, 0, ItemIds::WARPED_HYPHAE);
-        }
-        throw new AssumptionFailedError("Switch should cover all wood types");
+        return match ($this->id()) {
+            self::CRIMSON()->id() => new BID(Ids::CRIMSON_HYPHAE, 0, ItemIds::CRIMSON_HYPHAE),
+            self::WARPED()->id() => new BID(Ids::WARPED_HYPHAE, 0, ItemIds::WARPED_HYPHAE),
+            default => throw new AssumptionFailedError("Should cover all wood types"),
+        };
     }
 
     public function getStripepedHyphaeIdentifier() : BID{
-        switch($this->id()){
-            case self::CRIMSON()->id():
-                return new BID(Ids::STRIPPED_CRIMSON_HYPHAE, 0, ItemIds::STRIPPED_CRIMSON_HYPHAE);
-            case self::WARPED()->id():
-                return new BID(Ids::STRIPPED_WARPED_HYPHAE, 0, ItemIds::STRIPPED_WARPED_HYPHAE);
-        }
-        throw new AssumptionFailedError("Switch should cover all wood types");
+        return match ($this->id()) {
+            self::CRIMSON()->id() => new BID(Ids::STRIPPED_CRIMSON_HYPHAE, 0, ItemIds::STRIPPED_CRIMSON_HYPHAE),
+            self::WARPED()->id() => new BID(Ids::STRIPPED_WARPED_HYPHAE, 0, ItemIds::STRIPPED_WARPED_HYPHAE),
+            default => throw new AssumptionFailedError("Should cover all wood types"),
+        };
     }
 
     public function getPlanksIdentifier() : BID{
-        switch($this->id()){
-            case self::CRIMSON()->id():
-                return new BID(Ids::CRIMSON_PLANKS, 0, ItemIds::CRIMSON_PLANKS);
-            case self::WARPED()->id():
-                return new BID(Ids::WARPED_PLANKS, 0, ItemIds::WARPED_PLANKS);
-        }
-        throw new AssumptionFailedError("Switch should cover all wood types");
+        return match ($this->id()) {
+            self::CRIMSON()->id() => new BID(Ids::CRIMSON_PLANKS, 0, ItemIds::CRIMSON_PLANKS),
+            self::WARPED()->id() => new BID(Ids::WARPED_PLANKS, 0, ItemIds::WARPED_PLANKS),
+            default => throw new AssumptionFailedError("Should cover all wood types"),
+        };
     }
 
     public function getStairsIdentifier() : BID{
-        switch($this->id()){
-            case self::CRIMSON()->id():
-                return new BID(Ids::CRIMSON_STAIRS, 0, ItemIds::CRIMSON_STAIRS);
-            case self::WARPED()->id():
-                return new BID(Ids::WARPED_STAIRS, 0, ItemIds::WARPED_STAIRS);
-        }
-        throw new AssumptionFailedError("Switch should cover all wood types");
+        return match ($this->id()) {
+            self::CRIMSON()->id() => new BID(Ids::CRIMSON_STAIRS, 0, ItemIds::CRIMSON_STAIRS),
+            self::WARPED()->id() => new BID(Ids::WARPED_STAIRS, 0, ItemIds::WARPED_STAIRS),
+            default => throw new AssumptionFailedError("Should cover all wood types"),
+        };
     }
 
     public function getSlabIdentifier() : BlockIdentifierFlattened{
-        switch($this->id()){
-            case self::CRIMSON()->id():
-                return new BlockIdentifierFlattened(Ids::CRIMSON_SLAB, [Ids::CRIMSON_DOUBLE_SLAB], 0, ItemIds::CRIMSON_SLAB);
-            case self::WARPED()->id():
-                return new BlockIdentifierFlattened(Ids::WARPED_SLAB, [Ids::WARPED_DOUBLE_SLAB], 0, ItemIds::WARPED_SLAB);
-        }
-        throw new AssumptionFailedError("Switch should cover all wood types");
+        return match ($this->id()) {
+            self::CRIMSON()->id() => new BlockIdentifierFlattened(Ids::CRIMSON_SLAB, [Ids::CRIMSON_DOUBLE_SLAB], 0, ItemIds::CRIMSON_SLAB),
+            self::WARPED()->id() => new BlockIdentifierFlattened(Ids::WARPED_SLAB, [Ids::WARPED_DOUBLE_SLAB], 0, ItemIds::WARPED_SLAB),
+            default => throw new AssumptionFailedError("Should cover all wood types"),
+        };
     }
 
     public function getButtonIdentifier() : BID{
-        switch($this->id()){
-            case self::CRIMSON()->id():
-                return new BID(Ids::CRIMSON_BUTTON, 0, ItemIds::CRIMSON_BUTTON);
-            case self::WARPED()->id():
-                return new BID(Ids::WARPED_BUTTON, 0, ItemIds::WARPED_BUTTON);
-        }
-        throw new AssumptionFailedError("Switch should cover all wood types");
+        return match ($this->id()) {
+            self::CRIMSON()->id() => new BID(Ids::CRIMSON_BUTTON, 0, ItemIds::CRIMSON_BUTTON),
+            self::WARPED()->id() => new BID(Ids::WARPED_BUTTON, 0, ItemIds::WARPED_BUTTON),
+            default => throw new AssumptionFailedError("Should cover all wood types"),
+        };
     }
 
     public function getDoorIdentifier() : BID{
-        switch($this->id()){
-            case self::CRIMSON()->id():
-                return new BID(Ids::CRIMSON_DOOR, 0, ItemIds::CRIMSON_DOOR);
-            case self::WARPED()->id():
-                return new BID(Ids::WARPED_DOOR, 0, ItemIds::WARPED_DOOR);
-        }
-        throw new AssumptionFailedError("Switch should cover all wood types");
+        return match ($this->id()) {
+            self::CRIMSON()->id() => new BID(Ids::CRIMSON_DOOR, 0, ItemIds::CRIMSON_DOOR),
+            self::WARPED()->id() => new BID(Ids::WARPED_DOOR, 0, ItemIds::WARPED_DOOR),
+            default => throw new AssumptionFailedError("Should cover all wood types"),
+        };
     }
 
     public function getTrapdoorIdentifier() : BID{
-        switch($this->id()){
-            case self::CRIMSON()->id():
-                return new BID(Ids::CRIMSON_TRAPDOOR, 0, ItemIds::CRIMSON_TRAPDOOR);
-            case self::WARPED()->id():
-                return new BID(Ids::WARPED_TRAPDOOR, 0, ItemIds::WARPED_TRAPDOOR);
-        }
-        throw new AssumptionFailedError("Switch should cover all wood types");
+        return match ($this->id()) {
+            self::CRIMSON()->id() => new BID(Ids::CRIMSON_TRAPDOOR, 0, ItemIds::CRIMSON_TRAPDOOR),
+            self::WARPED()->id() => new BID(Ids::WARPED_TRAPDOOR, 0, ItemIds::WARPED_TRAPDOOR),
+            default => throw new AssumptionFailedError("Should cover all wood types"),
+        };
     }
 
     public function getPressurePlateIdentifier() : BID{
-        switch($this->id()){
-            case self::CRIMSON()->id():
-                return new BID(Ids::CRIMSON_PRESSURE_PLATE, 0, ItemIds::CRIMSON_PRESSURE_PLATE);
-            case self::WARPED()->id():
-                return new BID(Ids::WARPED_PRESSURE_PLATE, 0, ItemIds::WARPED_PRESSURE_PLATE);
-        }
-        throw new AssumptionFailedError("Switch should cover all wood types");
+        return match ($this->id()) {
+            self::CRIMSON()->id() => new BID(Ids::CRIMSON_PRESSURE_PLATE, 0, ItemIds::CRIMSON_PRESSURE_PLATE),
+            self::WARPED()->id() => new BID(Ids::WARPED_PRESSURE_PLATE, 0, ItemIds::WARPED_PRESSURE_PLATE),
+            default => throw new AssumptionFailedError("Should cover all wood types"),
+        };
     }
 
     public function getFenceIdentifier() : BID{
-        switch($this->id()){
-            case self::CRIMSON()->id():
-                return new BID(Ids::CRIMSON_FENCE, 0, ItemIds::CRIMSON_FENCE);
-            case self::WARPED()->id():
-                return new BID(Ids::WARPED_FENCE, 0, ItemIds::WARPED_FENCE);
-        }
-        throw new AssumptionFailedError("Switch should cover all wood types");
+        return match ($this->id()) {
+            self::CRIMSON()->id() => new BID(Ids::CRIMSON_FENCE, 0, ItemIds::CRIMSON_FENCE),
+            self::WARPED()->id() => new BID(Ids::WARPED_FENCE, 0, ItemIds::WARPED_FENCE),
+            default => throw new AssumptionFailedError("Should cover all wood types"),
+        };
     }
 
     public function getFenceGateIdentifier() : BID{
-        switch($this->id()){
-            case self::CRIMSON()->id():
-                return new BID(Ids::CRIMSON_FENCE_GATE, 0, ItemIds::CRIMSON_FENCE_GATE);
-            case self::WARPED()->id():
-                return new BID(Ids::WARPED_FENCE_GATE, 0, ItemIds::WARPED_FENCE_GATE);
-        }
-        throw new AssumptionFailedError("Switch should cover all wood types");
+        return match ($this->id()) {
+            self::CRIMSON()->id() => new BID(Ids::CRIMSON_FENCE_GATE, 0, ItemIds::CRIMSON_FENCE_GATE),
+            self::WARPED()->id() => new BID(Ids::WARPED_FENCE_GATE, 0, ItemIds::WARPED_FENCE_GATE),
+            default => throw new AssumptionFailedError("Should cover all wood types"),
+        };
     }
 
     public function getFloorSignIdentifier() : BID{
-        switch($this->id()){
-            case self::CRIMSON()->id():
-                return new BID(Ids::CRIMSON_STANDING_SIGN, 0, ItemIds::CRIMSON_SIGN, TileSign::class);
-            case self::WARPED()->id():
-                return new BID(Ids::WARPED_STANDING_SIGN, 0, ItemIds::WARPED_SIGN, TileSign::class);
-        }
-        throw new AssumptionFailedError("Switch should cover all wood types");
+        return match ($this->id()) {
+            self::CRIMSON()->id() => new BID(Ids::CRIMSON_STANDING_SIGN, 0, ItemIds::CRIMSON_SIGN, TileSign::class),
+            self::WARPED()->id() => new BID(Ids::WARPED_STANDING_SIGN, 0, ItemIds::WARPED_SIGN, TileSign::class),
+            default => throw new AssumptionFailedError("Should cover all wood types"),
+        };
     }
 
     public function getWallSignIdentifier() : BID{
-        switch($this->id()){
-            case self::CRIMSON()->id():
-                return new BID(Ids::CRIMSON_WALL_SIGN, 0, ItemIds::CRIMSON_SIGN, TileSign::class);
-            case self::WARPED()->id():
-                return new BID(Ids::WARPED_WALL_SIGN, 0, ItemIds::WARPED_SIGN, TileSign::class);
-        }
-        throw new AssumptionFailedError("Switch should cover all wood types");
+        return match ($this->id()) {
+            self::CRIMSON()->id() => new BID(Ids::CRIMSON_WALL_SIGN, 0, ItemIds::CRIMSON_SIGN, TileSign::class),
+            self::WARPED()->id() => new BID(Ids::WARPED_WALL_SIGN, 0, ItemIds::WARPED_SIGN, TileSign::class),
+            default => throw new AssumptionFailedError("Should cover all wood types"),
+        };
     }
 
     public function getRootsIdentifier() : BID{
-        switch($this->id()){
-            case self::CRIMSON()->id():
-                return new BID(Ids::CRIMSON_ROOTS, 0, ItemIds::CRIMSON_ROOTS);
-            case self::WARPED()->id():
-                return new BID(Ids::WARPED_ROOTS, 0, ItemIds::WARPED_ROOTS);
-        }
-        throw new AssumptionFailedError("Switch should cover all wood types");
+        return match ($this->id()) {
+            self::CRIMSON()->id() => new BID(Ids::CRIMSON_ROOTS, 0, ItemIds::CRIMSON_ROOTS),
+            self::WARPED()->id() => new BID(Ids::WARPED_ROOTS, 0, ItemIds::WARPED_ROOTS),
+            default => throw new AssumptionFailedError("Should cover all wood types"),
+        };
     }
 
     public function getFungusIdentifier() : BID{
-        switch($this->id()){
-            case self::CRIMSON()->id():
-                return new BID(Ids::CRIMSON_FUNGUS, 0, ItemIds::CRIMSON_FUNGUS);
-            case self::WARPED()->id():
-                return new BID(Ids::WARPED_FUNGUS, 0, ItemIds::WARPED_FUNGUS);
-        }
-        throw new AssumptionFailedError("Switch should cover all wood types");
+        return match ($this->id()) {
+            self::CRIMSON()->id() => new BID(Ids::CRIMSON_FUNGUS, 0, ItemIds::CRIMSON_FUNGUS),
+            self::WARPED()->id() => new BID(Ids::WARPED_FUNGUS, 0, ItemIds::WARPED_FUNGUS),
+            default => throw new AssumptionFailedError("Should cover all wood types"),
+        };
     }
 
     public function getNyliumIdentifier() : BID{
-        switch($this->id()){
-            case self::CRIMSON()->id():
-                return new BID(Ids::CRIMSON_NYLIUM, 0, ItemIds::CRIMSON_NYLIUM);
-            case self::WARPED()->id():
-                return new BID(Ids::WARPED_NYLIUM, 0, ItemIds::WARPED_NYLIUM);
-        }
-        throw new AssumptionFailedError("Switch should cover all wood types");
+        return match ($this->id()) {
+            self::CRIMSON()->id() => new BID(Ids::CRIMSON_NYLIUM, 0, ItemIds::CRIMSON_NYLIUM),
+            self::WARPED()->id() => new BID(Ids::WARPED_NYLIUM, 0, ItemIds::WARPED_NYLIUM),
+            default => throw new AssumptionFailedError("Should cover all wood types")
+        };
     }
 
     public function getWartBlockIdentifier() : ?BID{
-        switch($this->id()){
-            case self::WARPED()->id():
-                return new BID(Ids::WARPED_WART, 0, ItemIds::WARPED_WART_BLOCK);
-        }
-        return null;
+        return match ($this->id()) {
+            self::WARPED()->id() => new BID(Ids::WARPED_WART, 0, ItemIds::WARPED_WART_BLOCK),
+            default => null
+        };
     }
 
     public function getVinesIdentifier() : BID{
-        switch($this->id()){
-            case self::CRIMSON()->id():
-                return new BID(Ids::WEEPING_VINES, 0, ItemIds::WEEPING_VINES);
-            case self::WARPED()->id():
-                return new BID(Ids::TWISTING_VINES, 0, ItemIds::TWISTING_VINES);
-        }
-        throw new AssumptionFailedError("Switch should cover all wood types");
+        return match ($this->id()) {
+            self::CRIMSON()->id() => new BID(Ids::WEEPING_VINES, 0, ItemIds::WEEPING_VINES),
+            self::WARPED()->id() => new BID(Ids::TWISTING_VINES, 0, ItemIds::TWISTING_VINES),
+            default => throw new AssumptionFailedError("Should cover all wood types")
+        };
     }
 }

@@ -55,16 +55,11 @@ class NetherVines extends Flowable{
     public function __construct(NetherTreeType $treeType){
         $this->treeType = $treeType;
 
-        switch($treeType->id()){
-            case NetherTreeType::CRIMSON()->id():
-                $name = "Weeping Vines";
-                break;
-            case NetherTreeType::WARPED()->id():
-                $name = "Twisting Vines";
-                break;
-            default:
-                $name = "Nether Vines";
-        }
+        $name = match ($treeType->id()) {
+            NetherTreeType::CRIMSON()->id() => "Weeping Vines",
+            NetherTreeType::WARPED()->id() => "Twisting Vines",
+            default => "Nether Vines"
+        };
         parent::__construct($treeType->getVinesIdentifier(), $name, BlockBreakInfo::instant());
     }
 
@@ -147,12 +142,10 @@ class NetherVines extends Flowable{
     }
 
     public function getHangingSide() : int{
-        switch($this->treeType->id()){
-            case NetherTreeType::CRIMSON()->id():
-                return Facing::UP;
-            case NetherTreeType::WARPED()->id():
-                return Facing::DOWN;
-        }
-        throw new AssumptionFailedError("Switch should cover all wood types");
+        return match ($this->treeType->id()) {
+            NetherTreeType::CRIMSON()->id() => Facing::UP,
+            NetherTreeType::WARPED()->id() => Facing::DOWN,
+            default => throw new AssumptionFailedError("Should cover all wood types")
+        };
     }
 }

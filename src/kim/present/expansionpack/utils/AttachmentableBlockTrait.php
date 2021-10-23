@@ -73,20 +73,24 @@ trait AttachmentableBlockTrait{
     }
 
     public function place(BlockTransaction $tx, Item $item, Block $blockReplace, Block $blockClicked, int $face, Vector3 $clickVector, ?Player $player = null) : bool{
-        if($face === Facing::DOWN){
-            $this->attachment = Attachment::CEILING;
-        }elseif($face === Facing::UP){
-            if($player !== null){
-                $this->facing = Facing::opposite($player->getHorizontalFacing());
-            }
-            $this->attachment = Attachment::FLOOR;
-        }else{
-            $this->facing = $face;
-            if($blockReplace->getSide($face)->isSolid()){
-                $this->attachment = Attachment::DOUBLE_WALL;
-            }else{
-                $this->attachment = Attachment::SINGLE_WALL;
-            }
+        switch($face){
+            case Facing::DOWN:
+                $this->attachment = Attachment::CEILING;
+                break;
+
+            case Facing::UP:
+                if($player !== null){
+                    $this->facing = Facing::opposite($player->getHorizontalFacing());
+                }
+                $this->attachment = Attachment::FLOOR;
+                break;
+            default:
+                $this->facing = $face;
+                if($blockReplace->getSide($face)->isSolid()){
+                    $this->attachment = Attachment::DOUBLE_WALL;
+                }else{
+                    $this->attachment = Attachment::SINGLE_WALL;
+                }
         }
 
         return parent::place($tx, $item, $blockReplace, $blockClicked, $face, $clickVector, $player);
